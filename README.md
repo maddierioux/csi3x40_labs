@@ -1,1 +1,1 @@
-# csi3x40_labs
+All labs for CSI 3140 Summer 2024
