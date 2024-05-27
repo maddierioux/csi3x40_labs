@@ -19,4 +19,24 @@ function createGame(n) {
     return gameBoard;
   }
   
+
+  function moveLeft(game) {
+    const pacmanIndex = game.indexOf('C');
+    if (pacmanIndex > 0) {
+      game[pacmanIndex] = '.';
+      game[pacmanIndex - 1] = 'C';
+    }
+    return game;
+  }
+  
+  function moveRight(game) {
+    const pacmanIndex = game.indexOf('C');
+    if (pacmanIndex < game.length - 1) {
+      game[pacmanIndex] = '.';
+      game[pacmanIndex + 1] = 'C';
+    }
+    return game;
+  }
+  
+  
   
