@@ -1,4 +1,8 @@
-function createGame(n) {
+function allPelletsEaten(game) {
+    return game.every(cell => cell !== '.');
+  }
+  
+  function createGame(n) {
     let gameBoard = new Array(n).fill('.');
     const pacmanIndex = Math.floor(Math.random() * n);
     let ghostIndex = Math.floor(Math.random() * n);
@@ -19,9 +23,6 @@ function createGame(n) {
     return gameBoard;
   }
   
-
-  let score = 0;
-
   function moveLeft(game) {
     const pacmanIndex = game.indexOf('C');
     if (pacmanIndex > 0) {
@@ -34,6 +35,10 @@ function createGame(n) {
       game[pacmanIndex - 1] = 'C';
     }
     console.log("Score:", score);
+    if (allPelletsEaten(game)) {
+      console.log("Level Completed!");
+      game = createGame(game.length);
+    }
     return game;
   }
   
@@ -49,8 +54,15 @@ function createGame(n) {
       game[pacmanIndex + 1] = 'C';
     }
     console.log("Score:", score);
+    if (allPelletsEaten(game)) {
+      console.log("Level Completed!");
+      game = createGame(game.length);
+    }
     return game;
   }
+  
+  console.log(moveLeft([".", ".", ".", ".", "C", ".", ".", "@", ".", "^"]));
+  console.log(moveRight([".", ".", ".", ".", "C", ".", ".", "@", ".", "^"]));
   
   
   
