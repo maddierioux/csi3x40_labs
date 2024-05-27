@@ -2,7 +2,7 @@ function allPelletsEaten(game) {
     return game.every(cell => cell !== '.');
   }
   
-  function createGame(n) {
+function createGame(n) {
     let gameBoard = new Array(n).fill('.');
     const pacmanIndex = Math.floor(Math.random() * n);
     let ghostIndex = Math.floor(Math.random() * n);
@@ -23,7 +23,7 @@ function allPelletsEaten(game) {
     return gameBoard;
   }
   
-  function moveLeft(game) {
+function moveLeft(game) {
     const pacmanIndex = game.indexOf('C');
     if (pacmanIndex > 0) {
       game[pacmanIndex] = '.';
@@ -42,7 +42,7 @@ function allPelletsEaten(game) {
     return game;
   }
   
-  function moveRight(game) {
+function moveRight(game) {
     const pacmanIndex = game.indexOf('C');
     if (pacmanIndex < game.length - 1) {
       game[pacmanIndex] = '.';
@@ -60,9 +60,26 @@ function allPelletsEaten(game) {
     }
     return game;
   }
+
+function moveGhost(game) {
+    const ghostIndex = game.indexOf('^');
+    const direction = Math.random() < 0.5 ? -1 : 1;
+    const newIndex = ghostIndex + direction;
   
-  console.log(moveLeft([".", ".", ".", ".", "C", ".", ".", "@", ".", "^"]));
-  console.log(moveRight([".", ".", ".", ".", "C", ".", ".", "@", ".", "^"]));
+    if (newIndex >= 0 && newIndex < game.length) {
+      game[ghostIndex] = '.';
+      game[newIndex] = '^';
+    }
+    return game;
+  }
+  
+function startGhostMovement(game) {
+    setInterval(() => {
+      console.log(moveGhost(game));
+    }, 2000);
+  }
+  
+  
   
   
   
